@@ -6,16 +6,23 @@ from listings.models import *
 
 def hello(request):
     bands = Band.objects.all()
-    listings = Listings.objects.all()
     return render(request,
                   'listings/hello.html',
                   context={'bands': bands}
                   )
+def listings(request):
+    listings = Listings.objects.all()
+    return render(request,
+                  'listings/listings.html',
+                  context={'listings': listings}
+                  )
 
 def about(request: HttpRequest):
-    return HttpResponse('<h1>À propos</h1> <p>Nous adorons merch !</p>')
-def listings(request):
-    return HttpResponse('<h1>List of announcements for articles</h1>')
+    return render(request,
+                  'listings/about_us.html',
+                  )
 
 def contact(request):
-    return HttpResponse('<h1>Contact US</h1>')
+    return render(request,
+                  'listings/contact_us.html',
+                  )

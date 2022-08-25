@@ -1,0 +1,16 @@
+{% extends 'listings/base.html' %}
+{% block content %}
+    <h1>List of announcements for articles</h1>
+    <table br="1">
+      <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+      </tr>
+        {% for list in listings %}
+      <tr>
+          <td>{{ list.id }}</td>
+          <td>{{ list.title }}</td>
+      </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
