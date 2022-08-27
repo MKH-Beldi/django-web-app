@@ -1,6 +1,6 @@
 {% extends 'listings/base.html' %}
 {% block content %}
-    <h1>Hello Django !</h1>
+    <h1>Bands</h1>
     <p>
         J'ai {{ bands|length }}
         {% if bands|length < 5 %}
@@ -14,7 +14,7 @@
     </p>
      <ul>
          {% for band in bands %}
-         <li>{{ band.name|upper }}</li>
+         <li><a href="{% url 'band_detail' band.id %}">{{ band.name|upper }}</a></li>
          {% endfor %}
      </ul>
 {% endblock %}
