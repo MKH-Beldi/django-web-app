@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect
 
 from listings.models import *
-from listings.forms import ContactsUSForm
+from listings.forms import BandForm, ContactsUSForm
 
 def band_list(request):
     bands = Band.objects.all()
@@ -20,6 +20,20 @@ def band_detail(request, id):
                   'listings/band_detail.html',
                   context={'band': band}
                   )
+
+def band_create(request):
+    if request.method == 'POST':
+        form = BandForm(request.POST)
+        if form.is_valid():
+            band = form.save()
+            return redirect('band_detail', band.id)
+    else:
+        form = BandForm()
+    return render(request,
+                  'listings/band_create.html',
+                   context={'form': form}
+                  )
+
 def listing_list(request):
     listings = Listings.objects.all()
     return render(request,

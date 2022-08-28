@@ -1,6 +1,7 @@
 {% extends 'listings/base.html' %}
 {% block content %}
     <h1>Bands</h1>
+    <h2><a href="{% url 'band_create' %}">Create Band</a></h2>
     <p>
         J'ai {{ bands|length }}
         {% if bands|length < 5 %}

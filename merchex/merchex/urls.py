@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('bands/', views.band_list, name='band_list'),
     path('bands/<int:id>/', views.band_detail, name='band_detail'),
+    path('bands/add/', views.band_create, name='band_create'),
     path('listings/', views.listing_list, name='listing_list'),
     path('listings/<int:id>/', views.listing_detail, name='listing_detail'),
     path('contact-us/', views.contact, name='contact'),
