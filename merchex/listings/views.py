@@ -34,6 +34,30 @@ def band_create(request):
                    context={'form': form}
                   )
 
+def band_change(request, id):
+    band = Band.objects.get(id=id)
+    if request.method == 'POST':
+        form = BandForm(request.POST, instance=band)
+        if form.is_valid():
+            band = form.save()
+            return redirect('band_detail', band.id)
+    else:
+        form = BandForm(instance=band)
+    return render(request,
+                  'listings/band_update.html',
+                   context={'form': form}
+                  )
+
+def band_delete(request, id):
+    band = Band.objects.get(id=id)
+    if request.method == 'POST':
+        band.delete()
+        return redirect('band_list')
+    return render(request,
+                  'listings/band_delete.html',
+                   context={'band': band}
+                  )
+
 def listing_list(request):
     listings = Listings.objects.all()
     return render(request,
